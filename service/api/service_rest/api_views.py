@@ -91,7 +91,7 @@ def api_show_appointment(request, pk):
                 status=400,
             )
 
-    elif request.method == "DELETE":
+    else:
         count, _ = Appointment.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
 
