@@ -16,10 +16,10 @@ from service_rest.models import AutomobileVO
 
 
 def get_autos():
-    url = "http://inventory-api:8000/api/automobiles"
+    url = "http://inventory-api:8000/api/automobiles/"
     response = requests.get(url)
     content = json.loads(response.content)
-    for auto in content["automobiles"]:
+    for auto in content["autos"]:
         AutomobileVO.objects.update_or_create(
             import_href=auto["href"],
             defaults={"vin": auto["vin"]},

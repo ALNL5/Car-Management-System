@@ -31,7 +31,8 @@ class AppointmentEncoder(ModelEncoder):
         "date",
         "time",
         "reason",
-        "vin"
+        "vin",
+        "technician",
     ]
     encoders = {
         "technician": TechnicianEncoder(),
@@ -74,8 +75,7 @@ def api_list_appointments(request):
         )
 
 
-
-@require_http_methods(["GET", "PUT", "DELETE"])
+@require_http_methods(["GET", "DELETE"])
 def api_show_appointment(request, pk):
     if request.method == "GET":
         try:
@@ -95,21 +95,21 @@ def api_show_appointment(request, pk):
         count, _ = Appointment.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
 
-    else:
-        content = json.loads(request.body)
-        try:
-            if "automobile" in content:
-                auto = AutomobileVO.objects.get(vin=content["automobile"])
-                content["automobile"] = auto
-        except AutomobileVO.DoesNotExist:
-            return JsonResponse(
-                {"message": "Invalid appointment id"},
-                status=400,
-            )
-        appointment.objects.filter(id=pk).update(**content)
-        appointment = Appointment.objects.get(id=pk)
-        return JsonResponse(
-            appointment,
-            encoder=AppointmentEncoder,
-            safe=False,
-        )
+    # else:
+    #     content = json.loads(request.body)
+    #     try:
+    #         if "automobile" in content:
+    #             auto = AutomobileVO.objects.get(vin=content["automobile"])
+    #             content["automobile"] = auto
+    #     except AutomobileVO.DoesNotExist:
+    #         return JsonResponse(
+    #             {"message": "Invalid appointment id"},
+    #             status=400,
+    #         )
+    #     appointment.objects.filter(id=pk).update(**content)
+    #     appointment = Appointment.objects.get(id=pk)
+    #     return JsonResponse(
+    #         appointment,
+    #         encoder=AppointmentEncoder,
+    #         safe=False,
+    #     )
