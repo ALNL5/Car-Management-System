@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { NavLink } from 'react-router-dom';
 
 function AppointmentsList() {
     const [appointments, setAppointment] = useState([])
@@ -26,36 +26,42 @@ function AppointmentsList() {
     // }
 
   return (
-    <table className="table table-striped">
-      <thead>
-        <tr>
-          <th>Customer name</th>
-          <th>Vin #</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Reason</th>
-          <th>VIP</th>
-          <th>Cancellation</th>
-          <th>Completion</th>
-        </tr>
-      </thead>
-      <tbody>
-        {appointments.appointments?.map(appointment => {
-          return (
-            <tr key={appointment.id}>
-              <td width="12%">{ appointment.consumer_name }</td>
-              <td width="12%">{ appointment.vin }</td>
-              <td width="12%">{ appointment.date }</td>
-              <td width="12%">{ appointment.time }</td>
-              <td width="12%">{ appointment.reason }</td>
-              <td width="12%">TBD</td>
-              <td><button type="button" className="btn btn-primary">Cancel</button></td>
-              <td><button type="button" className="btn btn-primary">Finished</button></td>
+    <>
+        <h1>Appointments</h1>
+        <NavLink className="nav-link" to="/appointments/new">
+        <button type="button" className="btn btn-primary">Add appointment</button>
+        </NavLink>
+        <table className="table table-striped">
+        <thead>
+            <tr>
+            <th>Customer name</th>
+            <th>VIP</th>
+            <th>Vin #</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Reason</th>
+            <th>Cancellation</th>
+            <th>Completion</th>
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+            {appointments.appointments?.map(appointment => {
+            return (
+                <tr key={appointment.id}>
+                <td width="8%">{ appointment.consumer_name }</td>
+                <td width="6%">TBD</td>
+                <td width="12%">{ appointment.vin }</td>
+                <td width="12%">{ appointment.date }</td>
+                <td width="12%">{ appointment.time }</td>
+                <td width="12%">{ appointment.reason }</td>
+                <td width="12%"><button type="button" className="btn btn-primary">Cancel</button></td>
+                <td width="12%"><button type="button" className="btn btn-primary">Finished</button></td>
+                </tr>
+            );
+            })}
+        </tbody>
+        </table>
+    </>
   );
 }
 
