@@ -90,8 +90,8 @@ def api_list_appointments(request):
         content["technician"] = Technician.objects.get(id=content["technician_id"])
 
         try:
-            vin = AutomobileVO.objects.get(vin=content["vin"])
-            content["vip"] = True
+            if AutomobileVO.objects.get(vin=content["vin"]):
+                content["vip"] = True
         except AutomobileVO.DoesNotExist:
             content["vip"] = False
 
@@ -103,7 +103,7 @@ def api_list_appointments(request):
         )
 
 
-@require_http_methods(["GET", "DELETE"])
+@require_http_methods(["GET", "DELETE", "PUT"])
 def api_show_appointment(request, pk):
     if request.method == "GET":
         try:
@@ -119,6 +119,24 @@ def api_show_appointment(request, pk):
                 status=400,
             )
 
-    else:
+    elif request.method == "DELETE":
         count, _ = Appointment.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
+
+    else:
+        content = json.loads(request.body)
+        try:
+            if "technician_id" in content:
+                technician = Technician.objects.get(id=content["technician_id"])
+                content["technician_id"] = technician
+        except Technician.DoesNotExist:
+            return JsonResponse(
+                {"message": "Technician does not exist"}
+            )
+        Appointment.objects.filter(id=pk).update(**content)
+        appointment = Appointment.objects.get(id=pk)
+        return JsonResponse(
+            appointment,
+            encoder=AppointmentEncoder,
+            safe=False,
+        )

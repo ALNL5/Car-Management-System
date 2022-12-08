@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 function Nav() {
   return (
@@ -13,23 +13,21 @@ function Nav() {
             <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/manufacturers">Manufacturers</NavLink>
+            <li className='nav-item dropdown'>
+              <a className='nav-link dropdown-toggle' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Inventory</a>
+              <ul className='dropdown-menu'>
+                <li><Link className='dropdown-item' to='/manufacturers'>Manufacturers</Link></li>
+                <li><Link className='dropdown-item' to='/models'>Models</Link></li>
+                <li><Link className='dropdown-item' to='/automobiles'>Automobiles</Link></li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/models">Models</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/automobiles">Automobiles</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/technicians">Technicians</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/appointments">Appointments</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/service-history">Service history</NavLink>
+            <li className='nav-item dropdown'>
+              <a className='nav-link dropdown-toggle' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Service</a>
+              <ul className='dropdown-menu'>
+                <li><Link className='dropdown-item' to='/technicians'>Technicians</Link></li>
+                <li><Link className='dropdown-item' to='/appointments'>Appointments</Link></li>
+                <li><Link className='dropdown-item' to='/service-history'>Service history</Link></li>
+              </ul>
             </li>
           </ul>
         </div>

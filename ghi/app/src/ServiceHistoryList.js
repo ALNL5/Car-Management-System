@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 function ServiceHistoryList() {
     const [appointments, setAppointment] = useState([])
     const [finishedAppointments, setFinishedAppointments] = useState([])
+    const [targetedAppointments, setTargetedAppointments] = useState([])
     useEffect(()=> {
         getAppointments();
     },[])

@@ -31,6 +31,7 @@ function AppointmentsList() {
     }
 
     const updateAppointment = async id => {
+        console.log(id);
         await fetch(`http://localhost:8080/api/appointments/${id}/`, {
           method: "put",
           body: JSON.stringify({
@@ -68,7 +69,8 @@ function AppointmentsList() {
             return (
                 <tr key={appointment.id}>
                 <td width="8%">{ appointment.consumer_name }</td>
-                <td width="6%">TBD</td>
+                {appointment.vip && <td width="6%">Y</td>}
+                {!appointment.vip && <td width="6%">N</td>}
                 <td width="12%">{ appointment.vin }</td>
                 <td width="12%">{ appointment.date }</td>
                 <td width="12%">{ appointment.time }</td>
