@@ -28,6 +28,9 @@ function Nav() {
             <li className="nav-item">
               <NavLink className="nav-link" to="/appointments">Appointments</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/service-history">Service history</NavLink>
+            </li>
           </ul>
         </div>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">

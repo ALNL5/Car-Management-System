@@ -11,7 +11,6 @@ class CreateManufacturerForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
 
-
       }
 
       async handleSubmit(event) {

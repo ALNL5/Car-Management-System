@@ -2,15 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 function ServiceHistoryList() {
-    const [services, setService] = useState([])
+    const [appointments, setAppointment] = useState([])
+    const [finishedAppointments, setFinishedAppointments] = useState([])
     useEffect(()=> {
-        getServices();
+        getAppointments();
     },[])
-    async function getServices() {
+    async function getAppointments() {
         const response = await fetch('http://localhost:8080/api/appointments/')
         if (response.ok) {
             const data = await response.json();
-            setService(data);
+            const finishedAppointments = data.appointments.filter(
+                appointment => appointment.is_finished === true
+              );
+            setAppointment(data);
+            setFinishedAppointments(finishedAppointments);
         }
     }
 
@@ -18,30 +23,26 @@ function ServiceHistoryList() {
   return (
     <>
         <div>
-          <label for="search">Search by VIN</label>
-          <input type="search" id="search" name="search" />
+        <input type="search" id="search" name="search" placeholder="Search by VIN"/>
+        {/* <button onClick={() => searchHistory("search")} htmlFor="search" type="button" className="btn btn-primary">Search</button> */}
         </div>
         <h1>Service appointments</h1>
-        <NavLink className="nav-link" to="/appointments/new">
-        <button type="button" className="btn btn-primary">Add appointment</button>
-        </NavLink>
         <table className="table table-striped">
         <thead>
             <tr>
-            <th>Customer name</th>
             <th>VIN</th>
+            <th>Customer name</th>
             <th>Date</th>
             <th>Time</th>
             <th>Reason</th>
             </tr>
         </thead>
         <tbody>
-            {appointments.appointments?.map(appointment => {
+            {finishedAppointments?.map(appointment => {
             return (
                 <tr key={appointment.id}>
-                <td width="8%">{ appointment.consumer_name }</td>
-                <td width="6%">TBD</td>
-                <td width="12%">{ appointment.vin }</td>
+                <td width="8%">{ appointment.vin }</td>
+                <td width="12%">{ appointment.consumer_name }</td>
                 <td width="12%">{ appointment.date }</td>
                 <td width="12%">{ appointment.time }</td>
                 <td width="12%">{ appointment.reason }</td>

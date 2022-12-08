@@ -11,6 +11,7 @@ import ModelsList from './ModelsList';
 import CreateModelForm from './CreateModelForm';
 import AutosList from './AutosList';
 import CreateAutoForm from './CreateAutoForm';
+import ServiceHistoryList from './ServiceHistoryList';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="technicians/new" element={<CreateTechnicianForm />} />
             <Route path="appointments" element={<AppointmentsList />} />
             <Route path="appointments/new" element={<CreateAppointmentForm />} />
+            <Route path="service-history" element={<ServiceHistoryList />} />
         </Routes>
       </div>
     </BrowserRouter>

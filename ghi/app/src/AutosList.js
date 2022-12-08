@@ -52,7 +52,7 @@ function AutosList() {
                 <td width="20%">{ auto.year }</td>
                 <td width="20%">{ auto.color }</td>
                 <td width="25%">{ auto.vin }</td>
-                <td><button onClick={() => deleteAuto(auto.id)} type="button" className="btn btn-primary">Delete</button></td>
+                <td><button onClick={() => deleteAuto(auto.vin)} type="button" className="btn btn-primary">Delete</button></td>
                 </tr>
             );
             })}

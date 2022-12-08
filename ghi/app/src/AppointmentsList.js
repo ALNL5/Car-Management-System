@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 function AppointmentsList() {
     const [appointments, setAppointment] = useState([])
+    const [unfinishedAppointments, setUnfinishedAppointment] = useState([])
     useEffect(()=> {
         getAppointments();
     },[])
@@ -11,9 +12,10 @@ function AppointmentsList() {
         if (response.ok) {
             const data = await response.json();
             const unfinishedAppointments = data.appointments.filter(
-                appointment => appointment.is_finished === false
-              );
+                appointment => { return appointment.is_finished === false }
+                );
             setAppointment(data);
+            setUnfinishedAppointment(unfinishedAppointments)
         }
     }
 
@@ -28,6 +30,19 @@ function AppointmentsList() {
       });
     }
 
+    const updateAppointment = async id => {
+        await fetch(`http://localhost:8080/api/appointments/${id}/`, {
+          method: "put",
+          body: JSON.stringify({
+            is_finished: true,
+          }),
+          headers: {
+            "Content-Type": "application/json"
+        },
+        }).then(() => {
+            window.location.reload();
+      });
+    }
 
   return (
     <>
@@ -49,7 +64,7 @@ function AppointmentsList() {
             </tr>
         </thead>
         <tbody>
-            {appointments.appointments?.map(appointment => {
+            {unfinishedAppointments?.map(appointment => {
             return (
                 <tr key={appointment.id}>
                 <td width="8%">{ appointment.consumer_name }</td>
@@ -59,7 +74,7 @@ function AppointmentsList() {
                 <td width="12%">{ appointment.time }</td>
                 <td width="12%">{ appointment.reason }</td>
                 <td width="12%"><button onClick={() => deleteAppointment(appointment.id)} type="button" className="btn btn-primary">Cancel</button></td>
-                <td width="12%"><button type="button" className="btn btn-primary">Finished</button></td>
+                <td width="12%"><button onClick={() => updateAppointment(appointment.id)} type="button" className="btn btn-primary">Finished</button></td>
                 </tr>
             );
             })}
