@@ -23,10 +23,12 @@ class Technician(models.Model):
 
 class Appointment(models.Model):
     vin = models.CharField(max_length=17, unique=True)
+    vip = models.BooleanField(default=False, null=True)
     consumer_name = models.CharField(max_length=200)
     date = models.DateField(auto_now_add=False,auto_now=False)
     time = models.TimeField(auto_now_add=False,auto_now=False)
     reason = models.CharField(max_length=200)
+    is_finished = models.BooleanField(default=False, null=True)
 
     technician = models.ForeignKey(
         Technician,

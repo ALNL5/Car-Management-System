@@ -39,7 +39,6 @@ class CreateAppointmentForm extends React.Component {
         };
         const response = await fetch(AppointmentUrl, fetchConfig);
         if (response.ok) {
-        //   const newAppointment = await response.json();
 
           const cleared = {
             vin: '',
@@ -84,7 +83,6 @@ class CreateAppointmentForm extends React.Component {
         this.setState({technician_id: value})
       }
 
-
       async componentDidMount() {
         const url = `http://localhost:8080/api/technicians/`;
 
@@ -108,8 +106,8 @@ class CreateAppointmentForm extends React.Component {
                     <label htmlFor="consumer_name">Customer Name</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input value={this.state.vin} onChange={this.handleVinChange} placeholder="vin" required type="text" name="vin" id="vin" className="form-control" />
-                    <label htmlFor="vin">Vin</label>
+                    <input value={this.state.vin} onChange={this.handleVinChange} placeholder="VIN" required type="text" name="vin" id="vin" className="form-control" />
+                    <label htmlFor="vin">VIN</label>
                   </div>
                   <div className="form-floating mb-3">
                     <input value={this.state.date} onChange={this.handleDateChange} placeholder="date" required type="date" name="date" id="date" className="form-control" />

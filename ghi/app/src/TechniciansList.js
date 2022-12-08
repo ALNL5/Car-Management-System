@@ -15,6 +15,17 @@ function TechniciansList() {
         }
     }
 
+    const deleteTechnician = async id => {
+        await fetch(`http://localhost:8080/api/technicians/${id}/`, {
+          method: "delete",
+          headers: {
+            "Content-Type": "application/json"
+        },
+        }).then(() => {
+            window.location.reload();
+      });
+    }
+
   return (
       <>
         <h1>Technicians</h1>
@@ -37,7 +48,7 @@ function TechniciansList() {
                 <td width="33%">{ technician.technician_name }</td>
                 <td width="33%">{ technician.employee_number }</td>
                 <td width="25%">{ technician.id }</td>
-                <td><button type="button" className="btn btn-primary">Delete</button></td>
+                <td><button onClick={() => deleteTechnician(technician.id)} type="button" className="btn btn-primary">Delete</button></td>
                 </tr>
             );
             })}

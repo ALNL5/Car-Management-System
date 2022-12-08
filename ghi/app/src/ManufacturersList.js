@@ -14,6 +14,17 @@ function ManufacturersList() {
         }
     }
 
+    const deleteManufacturer = async id => {
+        await fetch(`http://localhost:8100/api/manufacturers/${id}/`, {
+          method: "delete",
+          headers: {
+            "Content-Type": "application/json"
+        },
+        }).then(() => {
+            window.location.reload();
+      });
+    }
+
   return (
     <>
         <h1>Manufacturers</h1>
@@ -34,7 +45,7 @@ function ManufacturersList() {
                 <tr key={manufacturer.id}>
                 <td width="45%">{ manufacturer.name }</td>
                 <td width="40%">{ manufacturer.id }</td>
-                <td><button type="button" className="btn btn-primary">Delete</button></td>
+                <td><button onClick={() => deleteManufacturer(manufacturer.id)} type="button" className="btn btn-primary">Delete</button></td>
                 </tr>
             );
             })}

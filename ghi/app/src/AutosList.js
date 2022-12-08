@@ -15,6 +15,19 @@ function AutosList() {
         }
     }
 
+    const deleteAuto = async id => {
+        console.log(id)
+        await fetch(`http://localhost:8100/api/automobiles/${id}/`, {
+          method: "delete",
+          headers: {
+            "Content-Type": "application/json"
+        },
+        }).then(() => {
+            window.location.reload();
+      });
+    }
+
+
   return (
       <>
         <h1>Automobiles</h1>
@@ -27,7 +40,7 @@ function AutosList() {
             <th>Model</th>
             <th>Year</th>
             <th>Color</th>
-            <th>Vin</th>
+            <th>VIN</th>
             <th>Delete</th>
             </tr>
         </thead>
@@ -39,7 +52,7 @@ function AutosList() {
                 <td width="20%">{ auto.year }</td>
                 <td width="20%">{ auto.color }</td>
                 <td width="25%">{ auto.vin }</td>
-                <td><button type="button" className="btn btn-primary">Delete</button></td>
+                <td><button onClick={() => deleteAuto(auto.id)} type="button" className="btn btn-primary">Delete</button></td>
                 </tr>
             );
             })}

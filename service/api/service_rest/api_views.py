@@ -32,6 +32,8 @@ class AppointmentEncoder(ModelEncoder):
         "time",
         "reason",
         "vin",
+        "vip",
+        "is_finished",
         "technician",
     ]
     encoders = {
@@ -86,6 +88,13 @@ def api_list_appointments(request):
     else:
         content = json.loads(request.body)
         content["technician"] = Technician.objects.get(id=content["technician_id"])
+
+        try:
+            vin = AutomobileVO.objects.get(vin=content["vin"])
+            content["vip"] = True
+        except AutomobileVO.DoesNotExist:
+            content["vip"] = False
+
         appointment = Appointment.objects.create(**content)
         return JsonResponse(
             appointment,
@@ -113,22 +122,3 @@ def api_show_appointment(request, pk):
     else:
         count, _ = Appointment.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
-
-    # else:
-    #     content = json.loads(request.body)
-    #     try:
-    #         if "automobile" in content:
-    #             auto = AutomobileVO.objects.get(vin=content["automobile"])
-    #             content["automobile"] = auto
-    #     except AutomobileVO.DoesNotExist:
-    #         return JsonResponse(
-    #             {"message": "Invalid appointment id"},
-    #             status=400,
-    #         )
-    #     appointment.objects.filter(id=pk).update(**content)
-    #     appointment = Appointment.objects.get(id=pk)
-    #     return JsonResponse(
-    #         appointment,
-    #         encoder=AppointmentEncoder,
-    #         safe=False,
-    #     )

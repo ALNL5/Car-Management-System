@@ -1,36 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-function AppointmentsList() {
-    const [appointments, setAppointment] = useState([])
+function ServiceHistoryList() {
+    const [services, setService] = useState([])
     useEffect(()=> {
-        getAppointments();
+        getServices();
     },[])
-    async function getAppointments() {
+    async function getServices() {
         const response = await fetch('http://localhost:8080/api/appointments/')
         if (response.ok) {
             const data = await response.json();
-            const unfinishedAppointments = data.appointments.filter(
-                appointment => appointment.is_finished === false
-              );
-            setAppointment(data);
+            setService(data);
         }
-    }
-
-    const deleteAppointment = async id => {
-        await fetch(`http://localhost:8080/api/appointments/${id}/`, {
-          method: "delete",
-          headers: {
-            "Content-Type": "application/json"
-        },
-        }).then(() => {
-            window.location.reload();
-      });
     }
 
 
   return (
     <>
+        <div>
+          <label for="search">Search by VIN</label>
+          <input type="search" id="search" name="search" />
+        </div>
         <h1>Service appointments</h1>
         <NavLink className="nav-link" to="/appointments/new">
         <button type="button" className="btn btn-primary">Add appointment</button>
@@ -39,13 +29,10 @@ function AppointmentsList() {
         <thead>
             <tr>
             <th>Customer name</th>
-            <th>VIP</th>
             <th>VIN</th>
             <th>Date</th>
             <th>Time</th>
             <th>Reason</th>
-            <th>Cancellation</th>
-            <th>Completion</th>
             </tr>
         </thead>
         <tbody>
@@ -58,8 +45,6 @@ function AppointmentsList() {
                 <td width="12%">{ appointment.date }</td>
                 <td width="12%">{ appointment.time }</td>
                 <td width="12%">{ appointment.reason }</td>
-                <td width="12%"><button onClick={() => deleteAppointment(appointment.id)} type="button" className="btn btn-primary">Cancel</button></td>
-                <td width="12%"><button type="button" className="btn btn-primary">Finished</button></td>
                 </tr>
             );
             })}
@@ -69,4 +54,4 @@ function AppointmentsList() {
   );
 }
 
-export default AppointmentsList;
+export default ServiceHistoryList;

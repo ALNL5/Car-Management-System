@@ -15,6 +15,17 @@ function ModelsList() {
         }
     }
 
+    const deleteModel = async id => {
+        await fetch(`http://localhost:8100/api/models/${id}/`, {
+          method: "delete",
+          headers: {
+            "Content-Type": "application/json"
+        },
+        }).then(() => {
+            window.location.reload();
+      });
+    }
+
   return (
       <>
         <h1>Vehicle Models</h1>
@@ -37,7 +48,7 @@ function ModelsList() {
                 <td width="25%">{ model.name }</td>
                 <td width="30%"><img src={ model.picture_url } alt='' className="img-rounded" width = "50%" height="50%" /></td>
                 <td width="30%">{ model.manufacturer.name }</td>
-                <td><button type="button" className="btn btn-primary">Delete</button></td>
+                <td><button onClick={() => deleteModel(model.id)} type="button" className="btn btn-primary">Delete</button></td>
                 </tr>
             );
             })}
