@@ -30,12 +30,14 @@ class CreateTechnicianForm extends React.Component {
         };
         const response = await fetch(technicianUrl, fetchConfig);
         if (response.ok) {
-          this.setState({
-            technician_name: '',
-            employee_number: '',
-          });
 
-        }
+              const cleared = {
+                technician_name: '',
+                employee_number: '',
+              };
+              this.setState(cleared);
+              window.location.href='http://localhost:3000/technicians/'
+            }
       }
 
       handleChangeTechnicianName(event) {

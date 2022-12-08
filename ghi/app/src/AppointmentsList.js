@@ -11,11 +11,19 @@ function AppointmentsList() {
         if (response.ok) {
             const data = await response.json();
             setAppointment(data);
-
         }
     }
 
-    
+    // useEffect(()=> {
+    //     deleteAppointments();
+    // },[])
+    // async function deleteAppointments(id) {
+    //     const response = await fetch(`http://localhost:8080/api/appointments/$(id)/`)
+    //     if (response.ok) {
+    //         const data = await response.json();
+    //         setAppointment();
+    //     }
+    // }
 
   return (
     <table className="table table-striped">
