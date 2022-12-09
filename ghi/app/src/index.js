@@ -8,19 +8,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-
-async function loadTechnicians() {
-  const response1 = await fetch("http://localhost:8080/api/technicians/");
-  if (response1.ok) {
-    const data1 = await response1.json();
-    root.render(
-      <React.StrictMode>
-        <App technicians={data1.technicians} />
-      </React.StrictMode>
-    )
-  } else {
-    console.error(response1);
-  }
-}
-loadTechnicians();

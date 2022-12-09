@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 function ServiceHistoryList() {
-    const [appointments, setAppointment] = useState([])
+    const [vin, setVin] = useState("")
     const [targetedAppointments, setTargetedAppointments] = useState([])
     useEffect(()=> {
         getAppointments();
@@ -12,11 +12,14 @@ function ServiceHistoryList() {
         const response = await fetch('http://localhost:8080/api/appointments/')
         if (response.ok) {
             const data = await response.json();
-            const targetedAppointments = data.appointments.filter(
+            const targetedAppointments = await data.appointments.filter(
                 appointment => appointment.vin === inputVin
               );
-            setAppointment(data);
-            setTargetedAppointments(targetedAppointments);
+            console.log(targetedAppointments)
+            const targetedAppointments2 = await targetedAppointments.filter(
+                appointment => {return appointment.is_finished }
+            );
+            setTargetedAppointments(targetedAppointments2);
         }
     }
 
@@ -24,8 +27,8 @@ function ServiceHistoryList() {
   return (
     <>
         <div>
-        <input onChange={e => getAppointments(e.target.value)} type="search" id="search" name="search" placeholder="Search by VIN"/>
-        {/* <button htmlFor="search" type="button" className="btn btn-primary">Search</button> */}
+        <input onChange={e => setVin(e.target.value)} type="search" id="search" name="search" placeholder="Search by VIN"/>
+        <button onClick={() => getAppointments(vin)} htmlFor="search" type="submit" className="btn btn-primary">Search</button>
         </div>
         <h1>Service history</h1>
         <table className="table table-striped">
