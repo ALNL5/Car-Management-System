@@ -22,7 +22,7 @@ class Technician(models.Model):
 
 
 class Appointment(models.Model):
-    vin = models.CharField(max_length=17, unique=True)
+    vin = models.CharField(max_length=17)
     vip = models.BooleanField(default=False, null=True)
     consumer_name = models.CharField(max_length=200)
     date = models.DateField(auto_now_add=False,auto_now=False)

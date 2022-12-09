@@ -31,7 +31,6 @@ function AppointmentsList() {
     }
 
     const updateAppointment = async id => {
-        console.log(id);
         await fetch(`http://localhost:8080/api/appointments/${id}/`, {
           method: "put",
           body: JSON.stringify({

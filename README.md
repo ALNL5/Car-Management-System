@@ -12,7 +12,7 @@ Put how to run steps here!
 
 ## Application Diagram
 
-Put image or link to application diagram here. Identify your VOs here in the diagram.
+![](images/DDD.png)
 
 
 ## Services
@@ -31,4 +31,4 @@ You could theoretically screenshot insomnia.
 
 ## Value Objects
 
-If you didn't identify the VOs in your diagram, then identify them here.
+Value Objects are marked in the DDD application diagram.
