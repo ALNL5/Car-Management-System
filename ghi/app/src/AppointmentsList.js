@@ -50,7 +50,7 @@ function AppointmentsList() {
         <NavLink className="nav-link" to="/appointments/new">
         <button type="button" className="btn btn-primary">Add appointment</button>
         </NavLink>
-        <table className="table table-striped">
+        <table className="table table-striped" >
         <thead>
             <tr>
             <th>Customer name</th>
@@ -59,6 +59,7 @@ function AppointmentsList() {
             <th>Date</th>
             <th>Time</th>
             <th>Reason</th>
+            <th>Technician</th>
             <th>Cancellation</th>
             <th>Completion</th>
             </tr>
@@ -74,8 +75,9 @@ function AppointmentsList() {
                 <td width="12%">{ appointment.date }</td>
                 <td width="12%">{ appointment.time }</td>
                 <td width="12%">{ appointment.reason }</td>
+                <td width="12%">{ appointment.technician.technician_name }</td>
                 <td width="12%"><button onClick={() => deleteAppointment(appointment.id)} type="button" className="btn btn-primary">Cancel</button></td>
-                <td width="12%"><button onClick={() => updateAppointment(appointment.id)} type="button" className="btn btn-primary">Finished</button></td>
+                <td width="12%"><button onClick={() => updateAppointment(appointment.id)} type="button" className="btn btn-primary">Complete</button></td>
                 </tr>
             );
             })}

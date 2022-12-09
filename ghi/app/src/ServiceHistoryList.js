@@ -38,6 +38,7 @@ function ServiceHistoryList() {
             <th>Customer name</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Technician</th>
             <th>Reason</th>
             </tr>
         </thead>
@@ -45,10 +46,11 @@ function ServiceHistoryList() {
             {targetedAppointments?.map(appointment => {
             return (
                 <tr key={appointment.id}>
-                <td width="8%">{ appointment.vin }</td>
-                <td width="12%">{ appointment.consumer_name }</td>
+                <td width="12%">{ appointment.vin }</td>
+                <td width="14%">{ appointment.consumer_name }</td>
                 <td width="12%">{ appointment.date }</td>
-                <td width="12%">{ appointment.time }</td>
+                <td width="10%">{ appointment.time }</td>
+                <td width="12%">{ appointment.technician.technician_name }</td>
                 <td width="12%">{ appointment.reason }</td>
                 </tr>
             );
