@@ -17,7 +17,7 @@ Construction steps:
     4. Add "corsheaders.middleware.CorsMiddleware" in the MIDDLEWARE in both sales and service settings.py to ensure CORS works.
     5. Create superusers in inventory, sales and service and register admin.py of sales and service to make data editable in admin page.
     6. Add some manufacturer, model and automobile data in the admin
-    7. In sales_rest/models, create models of ??????????????????????????????????????????
+    7. In sales_rest/models, 
     8. In service_rest/models, create a AutomobileVO model to poll auto data from inventory-api, a technician model and an appointment model.
     9. make migrations
     10. Write view functions for GET, POST, PUT and DELETE for each feature.
@@ -36,7 +36,6 @@ Operation steps:
     8. Once a new one is created, you will be redirected to the list page.
     9. On the list page, you can also delete items by click the Delete button, and the page will be reloaded.
     10. On the service history page, input the VIN on the search bar, and the service history of the car with that VIN will be loaded on this page.
-    11. ???????????????????????????????????????????????
 
 ## Application Diagram
 
