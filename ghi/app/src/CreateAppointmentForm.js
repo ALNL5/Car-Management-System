@@ -100,7 +100,7 @@ class CreateAppointmentForm extends React.Component {
             <div className="offset-3 col-6">
               <div className="shadow p-4 mt-4">
                 <h1>Add an appointment</h1>
-                <form onSubmit={this.handleSubmit} id="create-shoes-form">
+                <form onSubmit={this.handleSubmit} id="create-appointment-form">
                   <div className="form-floating mb-3">
                     <input value={this.state.consumer_name} onChange={this.handleNameChange} placeholder="consumer_name" required type="text" name="consumer_name" id="consumer_name" className="form-control" />
                     <label htmlFor="consumer_name">Customer Name</label>

@@ -50,18 +50,30 @@ This can either be a separate section with the services, their URLs, and ports l
 URLS:
     Home page: localhost:3000
   ## inventory:
-    Manufacturers list: localhost:3000/manufacturers
-    Create manufacturer form: localhost:3000/manufacturers/new
-    Models list: localhost:3000/models
-    Create model form: localhost:3000/models/new
-    Automobiles list: localhost:3000/automobileS
-    Create automobile form: localhost:3000/automobiles/new
+    Manufacturers list:
+        localhost:3000/manufacturers
+    Create manufacturer form:
+        localhost:3000/manufacturers/new
+    Models list:
+        localhost:3000/models
+    Create model form:
+        localhost:3000/models/new
+    Automobiles list:
+        localhost:3000/automobiles
+    Create automobile form:
+        localhost:3000/automobiles/new
+
   ## service:
-    Technicians list: localhost:3000/technicians
-    Create technician form: localhost:3000/technicians/new
-    Appointments list: localhost:3000/appointments
-    Create appointment form: localhost:3000/appointments/new
-    Service history: localhost:3000/service-history
+    Technicians list:
+        localhost:3000/technicians
+    Create technician form:
+        localhost:3000/technicians/new
+    Appointments list:
+        localhost:3000/appointments
+    Create appointment form:
+        localhost:3000/appointments/new
+    Service history:
+        localhost:3000/service-history
 
   ## sales:
 
@@ -133,7 +145,7 @@ Ports:
                             }
                         ]
         GET: A specific model: http://localhost:8100/api/models/:id/
-            Response:    {
+            Response:   {
                             "href": "/api/models/1/",
                             "id": 1,
                             "name": "Sebring",

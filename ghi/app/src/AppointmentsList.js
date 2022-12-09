@@ -48,40 +48,40 @@ function AppointmentsList() {
     <>
         <h1>Service appointments</h1>
         <NavLink className="nav-link" to="/appointments/new">
-        <button type="button" className="btn btn-primary">Add appointment</button>
+          <button type="button" className="btn btn-primary">Add appointment</button>
         </NavLink>
-        <table className="table table-striped" >
-        <thead>
-            <tr>
-            <th>Customer name</th>
-            <th>VIP</th>
-            <th>VIN</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Reason</th>
-            <th>Technician</th>
-            <th>Cancellation</th>
-            <th>Completion</th>
-            </tr>
-        </thead>
-        <tbody>
-            {unfinishedAppointments?.map(appointment => {
-            return (
-                <tr key={appointment.id}>
-                <td width="8%">{ appointment.consumer_name }</td>
-                {appointment.vip && <td width="6%">Y</td>}
-                {!appointment.vip && <td width="6%">N</td>}
-                <td width="12%">{ appointment.vin }</td>
-                <td width="12%">{ appointment.date }</td>
-                <td width="12%">{ appointment.time }</td>
-                <td width="12%">{ appointment.reason }</td>
-                <td width="12%">{ appointment.technician.technician_name }</td>
-                <td width="12%"><button onClick={() => deleteAppointment(appointment.id)} type="button" className="btn btn-primary">Cancel</button></td>
-                <td width="12%"><button onClick={() => updateAppointment(appointment.id)} type="button" className="btn btn-primary">Complete</button></td>
-                </tr>
-            );
-            })}
-        </tbody>
+        <table className="table table-striped">
+          <thead>
+              <tr>
+              <th>Customer name</th>
+              <th>VIP</th>
+              <th>VIN</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Reason</th>
+              <th>Technician</th>
+              <th>Cancellation</th>
+              <th>Completion</th>
+              </tr>
+          </thead>
+          <tbody>
+              {unfinishedAppointments?.map(appointment => {
+              return (
+                  <tr key={appointment.id}>
+                  <td width="8%">{ appointment.consumer_name }</td>
+                  {appointment.vip && <td width="6%">Y</td>}
+                  {!appointment.vip && <td width="6%">N</td>}
+                  <td width="12%">{ appointment.vin }</td>
+                  <td width="16%">{ appointment.date }</td>
+                  <td width="12%">{ appointment.time }</td>
+                  <td width="12%">{ appointment.reason }</td>
+                  <td width="12%">{ appointment.technician.technician_name }</td>
+                  <td width="12%"><button onClick={() => deleteAppointment(appointment.id)} type="button" className="btn btn-primary">Cancel</button></td>
+                  <td width="12%"><button onClick={() => updateAppointment(appointment.id)} type="button" className="btn btn-primary">Complete</button></td>
+                  </tr>
+              );
+              })}
+          </tbody>
         </table>
     </>
   );
