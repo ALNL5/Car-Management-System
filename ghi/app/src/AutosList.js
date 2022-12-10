@@ -16,7 +16,6 @@ function AutosList() {
     }
 
     const deleteAuto = async id => {
-        console.log(id)
         await fetch(`http://localhost:8100/api/automobiles/${id}/`, {
           method: "delete",
           headers: {

@@ -15,7 +15,6 @@ function ServiceHistoryList() {
             const targetedAppointments = await data.appointments.filter(
                 appointment => appointment.vin === inputVin
               );
-            console.log(targetedAppointments)
             const targetedAppointments2 = await targetedAppointments.filter(
                 appointment => {return appointment.is_finished }
             );

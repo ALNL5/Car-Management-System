@@ -18,7 +18,6 @@ class AddSalesPerson extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = { ...this.state };
-        console.log(data)
 
         const salesPersonUrl = 'http://localhost:8090/api/salespersons/';
         const fetchConfig = {

@@ -86,14 +86,12 @@ class CreateSalesRecord extends React.Component {
 
         if (automobilesResponse.ok) {
             const data = await automobilesResponse.json();
-            console.log(data)
             let automobiles = []
             for (let auto of data) {
-                if (auto["sold"] === false) {
+                if (auto["sold"] == false) {
                     automobiles.push(auto)
                 }
             }
-            console.log(automobiles)
             this.setState({ automobiles: automobiles })
         }
         const salesPersonsUrl = "http://localhost:8090/api/salespersons/";

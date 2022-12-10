@@ -11,7 +11,6 @@ function ListSalesPerson() {
         if (response.ok) {
             const data = await response.json();
             setSalesPerson(data);
-            console.log(data)
         }
     }
 
