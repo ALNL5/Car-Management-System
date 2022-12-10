@@ -17,7 +17,7 @@ Construction steps:
 4. Add "corsheaders.middleware.CorsMiddleware" in the MIDDLEWARE in both sales and service settings.py to ensure CORS works.
 5. Create superusers in inventory, sales and service and register admin.py of sales and service to make data editable in admin page.
 6. Add some manufacturer, model and automobile data in the admin
-7. In sales_rest/models, 
+7. In sales_rest/models,
 8. In service_rest/models, create a AutomobileVO model to poll auto data from inventory-api, a technician model and an appointment model.
 9. make migrations
 10. Write view functions for GET, POST, PUT and DELETE for each feature.
@@ -38,7 +38,7 @@ Operation steps:
 10. On the service history page, input the VIN on the search bar, and the service history of the car with that VIN will be loaded on this page.
 11. Heading back to the main page, click the "Sales" section on the navigation bar to reach the dropdown Nav link to sales people, customers, sales record, and the sales history page.
 12. Both the "Sales People" and "Customers" pages show you a list of sales people and customers that you created after clicking on the button that allows you to create a new person for each section.
-13. These list pages also give you the option to delete items by clicking on the Delete button. 
+13. These list pages also give you the option to delete items by clicking on the Delete button.
 14. The "Sales Record" page lets you create a sales record by clicking on an automobile, sales person, and customer that you created. You can also include the sale price to show how much money the specific customer bought the automobile for.
 15. The "Sales History" page allows you to click on a dropdown navigation bar in order to click on a specific sales person. After clicking on the sales person of your choice, it will show the VIN of the automobile they sold and the customer that purchased it.
 
@@ -93,7 +93,7 @@ URLS:
     Create Sales Record:
         localhost:3000/sales/records/new/
 
-Ports:
+## Ports:
     react:
         - "3000:3000"
     sales-api:
@@ -456,97 +456,92 @@ Ports:
                                 }
 
   # Sales
-  1. Sales Person
-    GET: A list of sales people: http://localhost:8090/api/salespersons/
-        Response: "sales people": [
-                        {
+    1. Sales Person
+        GET: A list of sales people: http://localhost:8090/api/salespersons/
+            Response: "sales people": [
+                            {
+                                "href": "/api/salespersons/1/",
+                                "salesperson_name": "Josh",
+                                "employee_id": 90283,
+                                "id": 1
+                            },
+                        ]
+        GET: A specific sales person: http://localhost:8090/api/salespersons/:id/
+            Response:    {
                             "href": "/api/salespersons/1/",
                             "salesperson_name": "Josh",
                             "employee_id": 90283,
                             "id": 1
-                        },
-                    ]
-    GET: A specific sales person: http://localhost:8090/api/salespersons/:id/
-        Response:    {
-                        "href": "/api/salespersons/1/",
-                        "salesperson_name": "Josh",
-                        "employee_id": 90283,
-                        "id": 1
-                    }
-    POST: A new sales person: http://localhost:8090/api/salespersons/
-            POST content:   {
-                                "salesperson_name": "Brittany",
-                                "employee_id": 38402
-                            }
-        success response:   {
-                                "href": "/api/salespersons/5/",
-                                "salesperson_name": "Brittany",
-                                "employee_id": 38402,
-                                "id": 5
-                            }
-    DELETE: A sales person: http://localhost:8090/api/salespersons/:id/
-        success response:   {
-                                "deleted": true
-                            }
-2. Customer
-    GET: A list of customer: http://localhost:8090/api/customers/
-        Response: 	"customers": [
-                        {
-                            "href": "/api/customers/1/",
-                            "id": 1,
-                            "customer_name": "Kendall",
-                            "address": "134 Brady Court",
-                            "phone_number": "5513392837",
-                            }
-                        },
-                    ]
-    GET: A specific customer: http://localhost:8090/api/customers/:id/
-        Response:   {
-                            "href": "/api/customers/1/",
-                            "id": 1,
-                            "customer_name": "Kendall",
-                            "address": "134 Brady Court",
-                            "phone_number": "5513392837",
                         }
-                    }
-    POST: A new customer: http://localhost:8090/api/customers/
-            POST content:   {
-                                "customer_name": "Carter",
-                                "address": "194 Terhune Rd",
-                                "phone_number": "4593029483",
+        POST: A new sales person: http://localhost:8090/api/salespersons/
+                POST content:   {
+                                    "name": "Brittany",
+                                    "employee_id": 38402
+                                }
+            success response:   {
+                                    "href": "/api/salespersons/5/",
+                                    "name": "Brittany",
+                                    "employee_id": 38402,
+                                    "id": 5
+                                }
+        DELETE: A sales person: http://localhost:8090/api/salespersons/:id/
+            success response:   {
+                                    "deleted": true
+                                }
+    2. Customer
+        GET: A list of customer: http://localhost:8090/api/customers/
+            Response: 	"customers": [
+                            {
+                                "href": "/api/customers/1/",
+                                "id": 1,
+                                "customer_name": "Kendall",
+                                "address": "134 Brady Court",
+                                "phone_number": "5513392837",
+                                }
+                            },
+                        ]
+        GET: A specific customer: http://localhost:8090/api/customers/:id/
+            Response:   {
+                                "href": "/api/customers/1/",
+                                "id": 1,
+                                "customer_name": "Kendall",
+                                "address": "134 Brady Court",
+                                "phone_number": "5513392837",
                             }
-        success response:   {
-                                "href": "/api/customers/4/",
-                                "id": 4,
-                                "customer_name": "Carter",
-                                "address": "194 Terhune Rd",
-                                "phone_number": "4593029483",
+                        }
+        POST: A new customer: http://localhost:8090/api/customers/
+                POST content:   {
+                                    "customer_name": "Carter",
+                                    "address": "194 Terhune Rd",
+                                    "phone_number": "4593029483",
+                                }
+            success response:   {
+                                    "href": "/api/customers/4/",
+                                    "id": 4,
+                                    "customer_name": "Carter",
+                                    "address": "194 Terhune Rd",
+                                    "phone_number": "4593029483",
+                                    }
+                                }
+        PUT: A customer: http://localhost:8090/api/customers/:id/
+            PUT content:    {
+                                "customer_name": "Isla",
+                                "address": "450 Yemen Street",
+                                "phone_number": "9024936843",
+                            }
+            success response:   {
+                                "href": "/api/customers/1/",
+                                "id": 1,
+                                "customer_name": "Isla",
+                                "address": "450 Yemen Street",
+                                "phone_number": "9024936843",
                                 }
                             }
-    PUT: A customer: http://localhost:8090/api/customers/:id/
-        PUT content:    {
-                            "customer_name": "Isla",
-                            "address": "450 Yemen Street",
-                            "phone_number": "9024936843",
-                        }
-        success response:   {
-                            "href": "/api/customers/1/",
-                            "id": 1,
-                            "customer_name": "Isla",
-                            "address": "450 Yemen Street",
-                            "phone_number": "9024936843",
-                            }
-                        }
-    DELETE: A customer: http://localhost:8090/api/customers/:id/
-        success response:   {
-                                "deleted": true
-                            }
+        DELETE: A customer: http://localhost:8090/api/customers/:id/
+            success response:   {
+                                    "deleted": true
+                                }
 
-
-Document the endpoints of your API for each of the methods you implement (GET, POST, etc..)
-Provide sample success responses and sample request body data for the post requests.
-
-You could theoretically screenshot insomnia.
 
 
 ## Value Objects
