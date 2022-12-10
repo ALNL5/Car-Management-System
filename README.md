@@ -8,34 +8,39 @@ Person 2 - Sales - Gabriel Cruz
 ## How to Run this Application:
 
 Construction steps:
-    1. Fork and clone from GitLab
-    2. Open Docker and run it in Docker containers.
+1. Fork and clone from GitLab
+2. Open Docker and run it in Docker containers.
         docker volume create beta-data
         docker-compose build
         docker-compose up
-    3. In settings.py of the Sales and Service Django project: Install the sales_rest and service_rest application into their own INSTALLED_APPS and add "inventory-api" and "localhost" to ALLOWED_HOSTS
-    4. Add "corsheaders.middleware.CorsMiddleware" in the MIDDLEWARE in both sales and service settings.py to ensure CORS works.
-    5. Create superusers in inventory, sales and service and register admin.py of sales and service to make data editable in admin page.
-    6. Add some manufacturer, model and automobile data in the admin
-    7. In sales_rest/models, 
-    8. In service_rest/models, create a AutomobileVO model to poll auto data from inventory-api, a technician model and an appointment model.
-    9. make migrations
-    10. Write view functions for GET, POST, PUT and DELETE for each feature.
-    11. Write polling function in poller.py to poll automobile data from inventory-api
-    12. Test from insomnia. The detailed API are in the API documentation below.
-    13. Create REACT components, which are shown in the application diagram above.
+3. In settings.py of the Sales and Service Django project: Install the sales_rest and service_rest application into their own INSTALLED_APPS and add "inventory-api" and "localhost" to ALLOWED_HOSTS
+4. Add "corsheaders.middleware.CorsMiddleware" in the MIDDLEWARE in both sales and service settings.py to ensure CORS works.
+5. Create superusers in inventory, sales and service and register admin.py of sales and service to make data editable in admin page.
+6. Add some manufacturer, model and automobile data in the admin
+7. In sales_rest/models, 
+8. In service_rest/models, create a AutomobileVO model to poll auto data from inventory-api, a technician model and an appointment model.
+9. make migrations
+10. Write view functions for GET, POST, PUT and DELETE for each feature.
+11. Write polling function in poller.py to poll automobile data from inventory-api
+12. Test from insomnia. The detailed API are in the API documentation below.
+13. Create REACT components, which are shown in the application diagram above.
 
 Operation steps:
-    1. Open browser at http://localhost:3000/ to see the main page
-    2. On main page, click the "Inventory" on Navigation bar to reach the dropdown Nav link to manufacturer, model and automobile list page.
-    3. On each list page in step 2, you can see an add new form button. Click the button to create a new one on its create form page.
-    4. Once a new one is created, you will be redirected to the list page.
-    5. On the manufacturer, model and automobile list page, you can also delete items by click the Delete button, and the page will be reloaded.
-    6. Back to main page, click the "Service" on navigation bar to reach the dropdown Nav link to technician, appointment and service history page.
-    7. On the technician and appointment list page, you can see an add new form button. Click the button to create a new one on its create form page.
-    8. Once a new one is created, you will be redirected to the list page.
-    9. On the list page, you can also delete items by click the Delete button, and the page will be reloaded.
-    10. On the service history page, input the VIN on the search bar, and the service history of the car with that VIN will be loaded on this page.
+1. Open browser at http://localhost:3000/ to see the main page
+2. On main page, click the "Inventory" on Navigation bar to reach the dropdown Nav link to manufacturer, model and automobile list page.
+3. On each list page in step 2, you can see an add new form button. Click the button to create a new one on its create form page.
+4. Once a new one is created, you will be redirected to the list page.
+5. On the manufacturer, model and automobile list page, you can also delete items by click the Delete button, and the page will be reloaded.
+6. Back to main page, click the "Service" on navigation bar to reach the dropdown Nav link to technician, appointment and service history page.
+7. On the technician and appointment list page, you can see an add new form button. Click the button to create a new one on its create form page.
+8. Once a new one is created, you will be redirected to the list page.
+9. On the list page, you can also delete items by click the Delete button, and the page will be reloaded.
+10. On the service history page, input the VIN on the search bar, and the service history of the car with that VIN will be loaded on this page.
+11. Heading back to the main page, click the "Sales" section on the navigation bar to reach the dropdown Nav link to sales people, customers, sales record, and the sales history page.
+12. Both the "Sales People" and "Customers" pages show you a list of sales people and customers that you created after clicking on the button that allows you to create a new person for each section.
+13. These list pages also give you the option to delete items by clicking on the Delete button. 
+14. The "Sales Record" page lets you create a sales record by clicking on an automobile, sales person, and customer that you created. You can also include the sale price to show how much money the specific customer bought the automobile for.
+15. The "Sales History" page allows you to click on a dropdown navigation bar in order to click on a specific sales person. After clicking on the sales person of your choice, it will show the VIN of the automobile they sold and the customer that purchased it.
 
 ## Application Diagram
 
@@ -75,7 +80,18 @@ URLS:
         localhost:3000/service-history
 
   ## sales:
-
+    Sales Person list:
+        localhost:3000/employees/
+    Create Sales Person Form:
+        localhost:3000/employees/new/
+    Customers List:
+        localhost:3000/customers
+    Create Customers Form:
+        localhost:3000/customers/new/
+    Sales History List:
+        localhost:3000/sales/records/
+    Create Sales Record:
+        localhost:3000/sales/records/new/
 
 Ports:
     react:
@@ -440,6 +456,92 @@ Ports:
                                 }
 
   # Sales
+  1. Sales Person
+    GET: A list of sales people: http://localhost:8090/api/salespersons/
+        Response: "sales people": [
+                        {
+                            "href": "/api/salespersons/1/",
+                            "salesperson_name": "Josh",
+                            "employee_id": 90283,
+                            "id": 1
+                        },
+                    ]
+    GET: A specific sales person: http://localhost:8090/api/salespersons/:id/
+        Response:    {
+                        "href": "/api/salespersons/1/",
+                        "salesperson_name": "Josh",
+                        "employee_id": 90283,
+                        "id": 1
+                    }
+    POST: A new sales person: http://localhost:8090/api/salespersons/
+            POST content:   {
+                                "salesperson_name": "Brittany",
+                                "employee_id": 38402
+                            }
+        success response:   {
+                                "href": "/api/salespersons/5/",
+                                "salesperson_name": "Brittany",
+                                "employee_id": 38402,
+                                "id": 5
+                            }
+    DELETE: A sales person: http://localhost:8090/api/salespersons/:id/
+        success response:   {
+                                "deleted": true
+                            }
+2. Customer
+    GET: A list of customer: http://localhost:8090/api/customers/
+        Response: 	"customers": [
+                        {
+                            "href": "/api/customers/1/",
+                            "id": 1,
+                            "customer_name": "Kendall",
+                            "address": "134 Brady Court",
+                            "phone_number": "5513392837",
+                            }
+                        },
+                    ]
+    GET: A specific customer: http://localhost:8090/api/customers/:id/
+        Response:   {
+                            "href": "/api/customers/1/",
+                            "id": 1,
+                            "customer_name": "Kendall",
+                            "address": "134 Brady Court",
+                            "phone_number": "5513392837",
+                        }
+                    }
+    POST: A new customer: http://localhost:8090/api/customers/
+            POST content:   {
+                                "customer_name": "Carter",
+                                "address": "194 Terhune Rd",
+                                "phone_number": "4593029483",
+                            }
+        success response:   {
+                                "href": "/api/customers/4/",
+                                "id": 4,
+                                "customer_name": "Carter",
+                                "address": "194 Terhune Rd",
+                                "phone_number": "4593029483",
+                                }
+                            }
+    PUT: A customer: http://localhost:8090/api/customers/:id/
+        PUT content:    {
+                            "customer_name": "Isla",
+                            "address": "450 Yemen Street",
+                            "phone_number": "9024936843",
+                        }
+        success response:   {
+                            "href": "/api/customers/1/",
+                            "id": 1,
+                            "customer_name": "Isla",
+                            "address": "450 Yemen Street",
+                            "phone_number": "9024936843",
+                            }
+                        }
+    DELETE: A customer: http://localhost:8090/api/customers/:id/
+        success response:   {
+                                "deleted": true
+                            }
+
 
 Document the endpoints of your API for each of the methods you implement (GET, POST, etc..)
 Provide sample success responses and sample request body data for the post requests.

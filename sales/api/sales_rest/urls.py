@@ -1,5 +1,4 @@
-"""sales_project URL Configuration
-
+"""
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
 Examples:
@@ -14,9 +13,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include 
+from django.urls import path
+from .views import listSalesRecord, salesRecordDetail, listAutomobileVOs, listSalesPeople, listCustomers
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('sales_rest.urls')),
+    path('records/', listSalesRecord, name='listSalesRecord'),
+    path('records/<int:pk>/', salesRecordDetail, name='salesRecordDetail'),
+    path('inventory/', listAutomobileVOs, name='listAutomobileVOs'),
+    path('salespersons/', listSalesPeople, name='listSalesPeople'),
+    path('customers/', listCustomers, name="listCustomers"),
 ]

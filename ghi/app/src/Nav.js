@@ -33,6 +33,19 @@ function Nav() {
         </div>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className='nav-item dropdown'>
+              <a className='nav-link dropdown-toggle' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sales</a>
+              <ul className='dropdown-menu'>
+                <li><NavLink className='dropdown-item' to='/sales/employees/'>Sales People</NavLink></li>
+                <li><NavLink className='dropdown-item' to='/sales/customers/'>Customers</NavLink></li>
+                <li><NavLink className='dropdown-item' to='/sales/records/new/'>Sales Record</NavLink></li>
+                <li><NavLink className='dropdown-item' to='/sales/records/'>Sales History</NavLink></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           </ul>
         </div>
       </div>
