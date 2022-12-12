@@ -43,6 +43,7 @@ class CustomerDetailEncoder(ModelEncoder):
 class SalesRecordListEncoder(ModelEncoder):
     model = SalesRecord
     properties = [
+        "id",
         "automobile",
         "sales_person",
         "customer",
