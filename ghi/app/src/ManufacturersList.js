@@ -26,7 +26,7 @@ function ManufacturersList() {
     }
 
   return (
-    <>
+    <div className='container'>
         <h1>Manufacturers</h1>
         <NavLink className="nav-link" to="/manufacturers/new">
             <button type="button" className="btn btn-primary">Add manufacturer</button>
@@ -34,8 +34,8 @@ function ManufacturersList() {
         <table className="table table-striped">
         <thead>
             <tr>
-            <th>Name</th>
-            <th>id</th>
+            <th>No.</th>
+            <th>Manufacturer</th>
             <th>Delete</th>
             </tr>
         </thead>
@@ -43,15 +43,15 @@ function ManufacturersList() {
             {manufacturers.manufacturers?.map(manufacturer => {
             return (
                 <tr key={manufacturer.id}>
-                <td width="45%">{ manufacturer.name }</td>
                 <td width="40%">{ manufacturer.id }</td>
+                <td width="45%">{ manufacturer.name }</td>
                 <td><button onClick={() => deleteManufacturer(manufacturer.id)} type="button" className="btn btn-primary">Delete</button></td>
                 </tr>
             );
             })}
         </tbody>
         </table>
-    </>
+    </div>
   );
 }
 export default ManufacturersList;

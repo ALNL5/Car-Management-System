@@ -43,6 +43,7 @@ class CustomerDetailEncoder(ModelEncoder):
 class SalesRecordListEncoder(ModelEncoder):
     model = SalesRecord
     properties = [
+        "id",
         "automobile",
         "sales_person",
         "customer",
@@ -153,6 +154,20 @@ def listSalesPeople(request):
     )
 
 
+@require_http_methods(["GET", "DELETE"])
+def salesPeopledDetail(request, pk):
+    if request.method == "GET":
+        record = SalesPerson.objects.get(id=pk)
+        return JsonResponse(
+            record,
+            encoder=SalesPersonDetailEncoder,
+            safe=False,
+        )
+    else:
+        count, _ = SalesPerson.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count > 0})
+
+
 @require_http_methods(["GET", "POST"])
 def listCustomers(request):
     if request.method == "GET":
@@ -170,6 +185,20 @@ def listCustomers(request):
             encoder=CustomerDetailEncoder,
             safe=False,
         )
+
+
+@require_http_methods(["GET", "DELETE"])
+def customersDetail(request, pk):
+    if request.method == "GET":
+        record = Customer.objects.get(id=pk)
+        return JsonResponse(
+            record,
+            encoder=CustomerDetailEncoder,
+            safe=False,
+        )
+    else:
+        count, _ = Customer.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count > 0})
 
 
 @require_http_methods("GET")

@@ -53,6 +53,7 @@ function AppointmentsList() {
         <table className="table table-striped">
           <thead>
               <tr>
+              <th>No.</th>
               <th>Customer name</th>
               <th>VIP</th>
               <th>VIN</th>
@@ -68,6 +69,7 @@ function AppointmentsList() {
               {unfinishedAppointments?.map(appointment => {
               return (
                   <tr key={appointment.id}>
+                  <td width="8%">{ appointment.id }</td>
                   <td width="8%">{ appointment.consumer_name }</td>
                   {appointment.vip && <td width="6%">Y</td>}
                   {!appointment.vip && <td width="6%">N</td>}

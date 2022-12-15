@@ -15,7 +15,6 @@ function ServiceHistoryList() {
             const targetedAppointments = await data.appointments.filter(
                 appointment => appointment.vin === inputVin
               );
-            console.log(targetedAppointments)
             const targetedAppointments2 = await targetedAppointments.filter(
                 appointment => {return appointment.is_finished }
             );
@@ -25,7 +24,7 @@ function ServiceHistoryList() {
 
 
   return (
-    <>
+    <div className='container'>
         <div>
         <input onChange={e => setVin(e.target.value)} type="search" id="search" name="search" placeholder="Search by VIN"/>
         <button onClick={() => getAppointments(vin)} htmlFor="search" type="submit" className="btn btn-primary">Search</button>
@@ -57,7 +56,7 @@ function ServiceHistoryList() {
             })}
         </tbody>
         </table>
-    </>
+    </div>
   );
 }
 

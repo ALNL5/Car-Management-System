@@ -18,12 +18,14 @@ import ListSalesPerson from './ListSalesPerson';
 import AddCustomer from './AddCustomer';
 import ListCustomer from './ListCustomer';
 import CreateSalesRecord from './CreateSalesRecord';
+import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 
 function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container">
+      <div>
         <Routes>
           <Route path="/" element={<MainPage />} />
             <Route path="manufacturers" element={<ManufacturersList />} />
@@ -43,6 +45,8 @@ function App() {
             <Route path="/sales/customers/" element={<ListCustomer />} />
             <Route path="/sales/records/new/" element={<CreateSalesRecord />} />
             <Route path="/sales/records/" element={<ListSalesHistory />} />
+            <Route path="login" element={<LoginForm />} />
+            <Route path="signup" element={<SignupForm />} />
         </Routes>
       </div>
     </BrowserRouter>

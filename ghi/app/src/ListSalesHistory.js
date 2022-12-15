@@ -19,7 +19,7 @@ class ListSalesHistory extends React.Component {
 
         let resultRecords = []
         for (let record of this.state.allSalesRecords) {
-            if (record["sales_person"]["name"] == value) {
+            if (record["sales_person"]["id"] == value) {
                 resultRecords.push(record)
             }
         }
@@ -61,7 +61,7 @@ class ListSalesHistory extends React.Component {
                             <option value=''>Choose a Sales Person</option>
                             {this.state.salesPersons.map(salesPerson => {
                                 return (
-                                    <option key={salesPerson.name} value={salesPerson.name}>{salesPerson.name}</option>
+                                    <option key={salesPerson.id} value={salesPerson.id}>{salesPerson.name}</option>
                                 )
                             })}
                         </select>
@@ -79,7 +79,7 @@ class ListSalesHistory extends React.Component {
                             <tbody>
                                 {this.state.salesRecords.map(record => {
                                     return (
-                                        <tr>
+                                        <tr key="record.id">
                                             <td>{record["sales_person"]["name"]}</td>
                                             <td>{record["customer"]["name"]}</td>
                                             <td>{record["automobile"]["vin"]}</td>

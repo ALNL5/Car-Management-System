@@ -27,7 +27,7 @@ function ModelsList() {
     }
 
   return (
-      <>
+      <div className='container'>
         <h1>Vehicle Models</h1>
         <NavLink className="nav-link" to="/models/new">
             <button type="button" className="btn btn-primary">Add model</button>
@@ -35,6 +35,7 @@ function ModelsList() {
         <table className="table table-striped">
         <thead>
             <tr>
+            <th>No.</th>
             <th>Name</th>
             <th>Picture</th>
             <th>Manufacturer</th>
@@ -45,6 +46,7 @@ function ModelsList() {
             {models.models?.map(model => {
             return (
                 <tr key={model.id}>
+                <td width="25%">{ model.id }</td>
                 <td width="25%">{ model.name }</td>
                 <td width="30%"><img src={ model.picture_url } alt='' className="img-rounded" width = "50%" height="50%" /></td>
                 <td width="30%">{ model.manufacturer.name }</td>
@@ -54,7 +56,7 @@ function ModelsList() {
             })}
         </tbody>
         </table>
-      </>
+      </div>
   );
 }
 export default ModelsList;

@@ -27,7 +27,7 @@ function TechniciansList() {
     }
 
   return (
-      <>
+      <div className='container'>
         <h1>Technicians</h1>
         <NavLink className="nav-link" to="/technicians/new">
             <button type="button" className="btn btn-primary">Add technician</button>
@@ -54,7 +54,7 @@ function TechniciansList() {
             })}
         </tbody>
         </table>
-      </>
+      </div>
   );
 }
 export default TechniciansList;

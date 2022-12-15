@@ -12,7 +12,7 @@ class AddSalesPerson extends React.Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleIDnumberChange = this.handleIDnumberChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
     }
 
     async handleSubmit(event) {
@@ -38,11 +38,11 @@ class AddSalesPerson extends React.Component {
                 employee_id: '',
             }
             this.setState(cleared);
-            const preElement = document.getElementById("pre-form");
-            preElement.classList.add("d-none")
+            // const preElement = document.getElementById("pre-form");
+            // preElement.classList.add("d-none")
 
-            const postElement = document.getElementById("post-form");
-            postElement.classList.remove("d-none")
+            // const postElement = document.getElementById("post-form");
+            // postElement.classList.remove("d-none")
         }
     }
 
@@ -56,18 +56,18 @@ class AddSalesPerson extends React.Component {
         this.setState({ employee_id: value })
     }
 
-    handleClick(event) {
-        const cleared = {
-            name: '',
-            employee_id: '',
-        }
-        this.setState(cleared)
-        const preElement = document.getElementById("pre-form");
-        preElement.classList.remove("d-none")
+    // handleClick(event) {
+    //     const cleared = {
+    //         name: '',
+    //         employee_id: '',
+    //     }
+    //     this.setState(cleared)
+        // const preElement = document.getElementById("pre-form");
+        // preElement.classList.remove("d-none")
 
-        const postElement = document.getElementById("post-form");
-        postElement.classList.add("d-none")
-    }
+        // const postElement = document.getElementById("post-form");
+        // postElement.classList.add("d-none")
+    // }
 
     render() {
         return (
@@ -86,9 +86,9 @@ class AddSalesPerson extends React.Component {
                         <button className="btn btn-primary btn-lg">Create</button>
                     </form>
                 </div>
-                <div className='col text-center d-none' id='post-form' >
+                {/* <div className='col text-center d-none' id='post-form' >
                     <button onClick={this.handleClick} className="btn btn-primary btn-lg" id='post-form'>Add Another?</button>
-                </div>
+                </div> */}
 
             </>
         )

@@ -16,7 +16,6 @@ function AutosList() {
     }
 
     const deleteAuto = async id => {
-        console.log(id)
         await fetch(`http://localhost:8100/api/automobiles/${id}/`, {
           method: "delete",
           headers: {
@@ -29,7 +28,7 @@ function AutosList() {
 
 
   return (
-      <>
+      <div className='container'>
         <h1>Automobiles</h1>
         <NavLink className="nav-link" to="/automobiles/new">
             <button type="button" className="btn btn-primary">Add automobile</button>
@@ -37,6 +36,7 @@ function AutosList() {
         <table className="table table-striped">
         <thead>
             <tr>
+            <th>No.</th>
             <th>Model</th>
             <th>Year</th>
             <th>Color</th>
@@ -48,6 +48,7 @@ function AutosList() {
             {autos.autos?.map(auto => {
             return (
                 <tr key={auto.id}>
+                <td width="20%">{ auto.id }</td>
                 <td width="20%">{ auto.model.name }</td>
                 <td width="20%">{ auto.year }</td>
                 <td width="20%">{ auto.color }</td>
@@ -58,7 +59,7 @@ function AutosList() {
             })}
         </tbody>
         </table>
-      </>
+      </div>
   );
 }
 export default AutosList;

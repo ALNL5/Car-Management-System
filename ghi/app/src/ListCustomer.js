@@ -27,7 +27,7 @@ function ListCustomer() {
     }
 
   return (
-      <>
+      <div className='container'>
         <h1>Customers</h1>
         <NavLink className="nav-link" to="/sales/customers/new/">
             <button type="button" className="btn btn-primary">Add Customer</button>
@@ -54,7 +54,7 @@ function ListCustomer() {
             })}
         </tbody>
         </table>
-      </>
+      </div>
   );
 }
 export default ListCustomer;
