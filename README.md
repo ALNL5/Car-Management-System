@@ -1,10 +1,4 @@
 # CarCar
-
-Team:
-
-Person 1 - Service - Ailin Li
-Person 2 - Sales - Gabriel Cruz
-
 ## How to Run this Application:
 
 Construction steps:
