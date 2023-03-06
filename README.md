@@ -86,21 +86,21 @@ This can either be a separate section with the services, their URLs, and ports l
     1. Manufacturer
         GET: Manufacturer list API: http://localhost:8100/api/manufacturers/
         GET: A specific manufacturer: http://localhost:8100/api/manufacturers/:id/
-        POST: A new manufacturer: 	http://localhost:8100/api/manufacturers/
-        PUT: a manufacturer: 	http://localhost:8100/api/manufacturers/:id/
-        DELETE: a manufacturer: http://localhost:8100/api/manufacturers/:id/
+        POST: A new manufacturer: http://localhost:8100/api/manufacturers/
+        PUT: A manufacturer: http://localhost:8100/api/manufacturers/:id/
+        DELETE: A manufacturer: http://localhost:8100/api/manufacturers/:id/
     2. Model:
         GET: Model list API: http://localhost:8100/api/models/
         GET: A specific model: http://localhost:8100/api/models/:id/
-        POST: A new model: 	http://localhost:8100/api/models/
-        PUT: a model: 	http://localhost:8100/api/models/:id/
-        DELETE: a model: http://localhost:8100/api/models/:id
+        POST: A new model: http://localhost:8100/api/models/
+        PUT: A model: http://localhost:8100/api/models/:id/
+        DELETE: A model: http://localhost:8100/api/models/:id
     3. Automobile:
         GET: Automobile list API: http://localhost:8100/api/automobiles/
         GET: A specific auto: http://localhost:8100/api/automobiles/:vin/
-        POST: A new auto: 	http://localhost:8100/api/automobiles/
-        PUT: an auto: 	http://localhost:8100/api/automobiles/:vin/
-        DELETE: an auto: http://localhost:8100/api/automobiles/:vin/
+        POST: A new auto: http://localhost:8100/api/automobiles/
+        PUT: An auto: http://localhost:8100/api/automobiles/:vin/
+        DELETE: An auto: http://localhost:8100/api/automobiles/:vin/
   ### Service
     1. Technician
         GET: A list of technicians: http://localhost:8080/api/technicians/
