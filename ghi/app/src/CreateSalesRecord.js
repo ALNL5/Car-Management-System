@@ -88,7 +88,7 @@ class CreateSalesRecord extends React.Component {
             const data = await automobilesResponse.json();
             let automobiles = []
             for (let auto of data) {
-                if (auto["sold"] == false) {
+                if (auto["sold"] === false) {
                     automobiles.push(auto)
                 }
             }
